@@ -12,7 +12,8 @@ const NativeScriptVueTarget = require('nativescript-vue-target');
 require('./prepare')();
 
 // Generate platform-specific webpack configuration
-const config = (platform, launchArgs) => {
+const config = (platform, launchArgs, env) => {
+  const configData = require(`./src/config/config.${env}.json`);
 
   winston.info(`Bundling application for ${platform}...`);
 
@@ -113,6 +114,11 @@ const config = (platform, launchArgs) => {
         canPrint: false,
       }),
 
+      // Set Global Vars based on loaded config file
+      new webpack.DefinePlugin({
+        ENVIRONMENT: JSON.stringify(env),
+      }),
+
       // Minify JavaScript code
       new webpack.optimize.UglifyJsPlugin({
         compress: {warnings: false},
@@ -152,11 +158,16 @@ const config = (platform, launchArgs) => {
 module.exports = env => {
   const action = (!env || !env.tnsAction) ? 'build' : env.tnsAction;
 
-  if (!env || (!env.android && !env.ios)) {
-    return [config('android'), config('ios', action)];
+  var environment = 'local';
+  if (env.ENV !== undefined && env.ENV !== null) {
+    environment = env.ENV;
   }
 
-  return env.android && config('android', `${action} android`)
-    || env.ios && config('ios', `${action} ios`)
+  if (!env || (!env.android && !env.ios)) {
+    return [config('android', null, environment), config('ios', action, environment)];
+  }
+
+  return env.android && config('android', `${action} android`, environment)
+    || env.ios && config('ios', `${action} ios`, environment)
     || {};
 };

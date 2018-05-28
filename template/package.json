@@ -6,15 +6,34 @@
   "license": "{{ license }}",
   "scripts": {
     "build": "webpack --env.tnsAction build",
+    "build:dev": "webpack --env.tnsAction build --env.ENV=dev",
+    "build:prod": "webpack --env.tnsAction build --env.ENV=prod",
     "build:android": "npm run build -- --env.android",
+    "build:android:dev": "npm run build -- --env.android --env.ENV=dev",
+    "build:android:prod": "npm run build -- --env.android --env.ENV=prod",
     "build:ios": "npm run build -- --env.ios",
+    "build:ios:dev": "npm run build -- --env.ios --env.ENV=dev",
+    "build:ios:prod": "npm run build -- --env.ios --env.ENV=prod",
     "debug": "webpack --watch --env.tnsAction debug",
+    "debug:dev": "webpack --watch --env.tnsAction debug --env.ENV=dev",
+    "debug:prod": "webpack --watch --env.tnsAction debug --env.ENV=prod",
     "debug:android": "npm run debug -- --env.android",
+    "debug:android:dev": "npm run debug -- --env.android --env.ENV=dev",
+    "debug:android:prod": "npm run debug -- --env.android --env.ENV=prod",
     "debug:ios": "npm run debug -- --env.ios",
+    "debug:ios:dev": "npm run debug -- --env.ios --env.ENV=dev",
+    "debug:ios:prod": "npm run debug -- --env.ios --env.ENV=dev",
     "watch": "webpack --watch --env.tnsAction run",
+    "watch:dev": "webpack --watch --env.tnsAction run --env.ENV=dev",
+    "watch:prod": "webpack --watch --env.tnsAction run --env.ENV=prod",
     "watch:android": "npm run watch -- --env.android",
+    "watch:android:dev": "npm run watch -- --env.android --env.ENV=dev",
+    "watch:android:prod": "npm run watch -- --env.android --env.ENV=prod",
     "watch:ios": "npm run watch -- --env.ios",
-    "clean": "rimraf dist"
+    "watch:ios:dev": "npm run watch -- --env.ios --env.ENV=dev",
+    "watch:ios:prod": "npm run watch -- --env.ios --env.ENV=prod",
+    "clean": "rimraf dist",
+    "lint": "node_modules/eslint/bin/eslint.js src/ --ext .js,.vue"
   },
   "dependencies": {
     "vuex": "^3.0.1",
@@ -29,6 +48,8 @@
     "babel-preset-env": "^1.6.1",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-plugin-vue": "^4.5.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "fs-extra": "^5.0.0",
     "less": "^3.0.4",
@@ -44,5 +65,8 @@
     "webpack": "^3.11.0",
     "webpack-synchronizable-shell-plugin": "0.0.7",
     "winston-color": "^1.0.0"
+  },
+  "nativescript": {
+    "id": "{{ app_id }}"
   }
 }

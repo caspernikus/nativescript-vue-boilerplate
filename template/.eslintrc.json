@@ -1,0 +1,30 @@
+{
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:vue/recommended",
+        "eslint:recommended"
+    ],
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "vue/html-quotes": "single",
+        "vue/max-attributes-per-line": [2, {
+            "singleline": 5,
+            "multiline": {
+              "max": 1,
+              "allowFirstLine": true
+            }
+        }],
+        "vue/attribute-hyphenation": [2, "never"],
+        "vue/html-indent": ["error", 4, {
+            "alignAttributesVertically": false
+        }]
+    },
+    "globals": {
+        "API_BASE_URL": false
+    }
+}

@@ -1,7 +1,7 @@
 # nativescript-vue-boilerplate
 
 > NativeScript-Vue & Vuex application template for quick prototyping with vue-cli (2.x). 
-> Giving you a pre-developed template with an Login & Home Screen and different environmental variable config to use from.
+> Giving you a pre-developed template with different environmental variable configs, predefined .less styling files, a simple vuex user module, as well as an ready to use ApiService and an example authentication flow to https://reqres.in/ by saving the authentication token to enable auto login.
 
 ## Usage
 
