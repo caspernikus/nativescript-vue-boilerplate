@@ -117,6 +117,7 @@ const config = (platform, launchArgs, env) => {
       // Set Global Vars based on loaded config file
       new webpack.DefinePlugin({
         ENVIRONMENT: JSON.stringify(env),
+        BASE_URL: JSON.stringify(configData.BASE_URL),
       }),
 
       // Minify JavaScript code

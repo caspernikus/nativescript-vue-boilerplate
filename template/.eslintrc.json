@@ -25,6 +25,6 @@
         }]
     },
     "globals": {
-        "API_BASE_URL": false
+        "BASE_URL": false
     }
 }
