@@ -1,27 +1,22 @@
 <template>
     <Page class='home' actionBarHidden='true' backgroundSpanUnderStatusBar='true' enableSwipeBackNavigation='false'>
         <NavigationButton visibility='collapsed' justifyContent='space-between' alignContent='space-between' />
-        <TabView>
-            <TabViewItem title="Messages">
-                <ChatRoomList />
-            </TabViewItem>
-            <TabViewItem title="Profil">
-                <DockLayout stretchLastChild='false'>
-                    <StackLayout class='home-controller' dock='top'>
-                        <Image src='res://boom_logo' stretch='aspectFit' horizontalAlignment='center' class='logo' />
+        <DockLayout stretchLastChild='false'>
+            <StackLayout class='home-controller' dock='top'>
+                <Image src='~/images/logo.png' stretch='aspectFit' horizontalAlignment='center' class='logo' />
 
-                        <Label text='Hello,' horizontalAlignment='center' />
-                        <Label horizontalAlignment='center'>{{ name }}</Label>
-                    </StackLayout>
+                <Label text='Hello,' horizontalAlignment='center' />
+                <Label horizontalAlignment='center'>{{ userName }}</Label>
 
-                    <Button
-                        text='Logout'
-                        class='logout-button'
-                        dock='bottom'
-                        @tap='logout()' />
-                </DockLayout>
-            </TabViewItem>
-        </TabView>
+                <Image :src='user.avatar' stretch='aspectFit' horizontalAlignment='center' class='logo' />
+            </StackLayout>
+
+            <Button
+                text='Logout'
+                class='logout-button'
+                dock='bottom'
+                @tap='logout()' />
+        </DockLayout>
     </Page>
 </template>
 
@@ -33,25 +28,18 @@
     import Login from './Login.vue';
 
     export default {
-        components: {
-            ChatRoomList
-        },
         data() {
             return {
                 user: {}
             }
-        }
+        },
         computed: {
             ...mapGetters({
                 getApiHeaders: 'user/getApiHeaders',
             }),
 
-            name() {
+            userName() {
                 return this.user.first_name + ' ' + this.user.last_name;
-            },
-
-            user() {
-                return this.getUserData;
             },
         },
         beforeMount() {
@@ -59,7 +47,7 @@
             this.api.setHeader(this.getApiHeaders);
 
             this.api.get('users/2').then((response) => {
-                const user = response.data.user;
+                const user = response.data;
 
                 this.user = user;
             }).catch((error) => {

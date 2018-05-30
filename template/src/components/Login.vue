@@ -2,7 +2,7 @@
     <Page class='login' actionBarHidden='true' backgroundSpanUnderStatusBar='true' enableSwipeBackNavigation='false'>
         <StackLayout class='login-controller' verticalAlignment='center'>
             <GridLayout ref='formControls' height='180' rows='auto, auto, auto' translateY='-50'>
-                <Image src='res://boom_logo' stretch='aspectFit' row='0' horizontalAlignment='center' class='logo' />
+                <Image src='~/images/logo.png' stretch='aspectFit' row='0' horizontalAlignment='center' class='logo' />
                 <TextField ref="email"
                     v-model='user.email'
                     :iEnabled='!isAuthenticating'
@@ -74,9 +74,9 @@
                     email: this.user.email,
                     password: this.user.password
                 }).then((response) => {
-                    const user = response.data.user;
+                    const token = response.token;
 
-                    this.saveToken(user.api_token).then(() => {
+                    this.saveToken(token).then(() => {
                         this.isAuthenticating = false;
 
                         this.$navigateTo(Home);
