@@ -6,9 +6,9 @@
                 <Image src='~/images/logo.png' stretch='aspectFit' horizontalAlignment='center' class='logo' />
 
                 <Label text='Hello,' horizontalAlignment='center' />
-                <Label horizontalAlignment='center'>{{ userName }}</Label>
+                <Label horizontalAlignment='center'>{{ name }}</Label>
 
-                <Image :src='user.avatar' stretch='aspectFit' horizontalAlignment='center' class='logo' />
+                <Image :src='avatar' stretch='aspectFit' horizontalAlignment='center' class='logo' />
             </StackLayout>
 
             <Button
@@ -28,18 +28,30 @@
     import Login from './Login.vue';
 
     export default {
-        data() {
-            return {
-                user: {}
-            }
-        },
         computed: {
             ...mapGetters({
+                getUserData: 'user/getUserData',
                 getApiHeaders: 'user/getApiHeaders',
             }),
 
-            userName() {
+            name() {
+                if (!this.user) {
+                    return '';
+                }
+
                 return this.user.first_name + ' ' + this.user.last_name;
+            },
+
+            avatar() {
+                if (!this.user) {
+                    return '';
+                }
+
+                return this.user.avatar;
+            },
+
+            user() {
+                return this.getUserData;
             },
         },
         beforeMount() {
@@ -49,7 +61,8 @@
             this.api.get('users/2').then((response) => {
                 const user = response.data;
 
-                this.user = user;
+                console.log(user);
+                this.saveUserData(user);
             }).catch((error) => {
                 alert({
                     title: 'Error: ' + error.statusCode,
@@ -66,6 +79,7 @@
         methods: {
             ...mapActions({
                 userLogout: 'user/logout',
+                saveUserData: 'user/saveUserData',
                 saveToken: 'user/saveToken',
             }),
 
