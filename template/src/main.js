@@ -9,7 +9,7 @@ import . from './styles.less'
 
 new Vue({
 
-  render: h => h(),
+  render: h => h(store.getters['user/isLoggedIn'] ? Home : Login),
 
   store,
 

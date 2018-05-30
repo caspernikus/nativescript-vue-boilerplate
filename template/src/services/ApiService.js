@@ -2,7 +2,7 @@ import * as http from 'tns-core-modules/http';
 
 export default class ApiService {
     constructor() {
-        this.baseUrl = API_BASE_URL;
+        this.baseUrl = BASE_URL;
 
         this.headers = {
             "Content-Type": "application/json",

@@ -23,13 +23,11 @@ export default {
     },
     getters: {
         isLoggedIn(state) {
-            if (applicationSettings.hasKey('apiToken')) {
-                if (state.apiToken.length > 0) {
-                    return true;
-                }
+            if (!state.apiToken) {
+                return false;
             }
 
-            return false;
+            return state.apiToken.length > 0;
         },
         getApiToken(state) {
             return state.apiToken;

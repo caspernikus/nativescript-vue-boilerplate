@@ -2,6 +2,14 @@
 
 > {{ description }}
 
+## Test Login Data:
+```
+{
+    "email": "peter@klaven",
+    "password": "cityslicka"
+}
+```
+
 ## Installation & Set Up
 
 ``` bash
