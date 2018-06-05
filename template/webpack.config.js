@@ -116,8 +116,14 @@ const config = (platform, launchArgs, env) => {
       extensions: [
         `.${platform}.css`,
         '.css',
+        {{#if_eq style_lang "less"}}
         `.${platform}.less`,
         '.less',
+        {{/if_eq}}
+        {{#if_eq style_lang "scss"}}
+        `.${platform}.scss`,
+        '.scss',
+        {{/if_eq}}
         `.${platform}.js`,
         '.js',
         `.${platform}.vue`,

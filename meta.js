@@ -74,10 +74,10 @@ module.exports = {
     },
   },
   filters: {
-    'styles.less': "style_lang != 'less'",
-    'less/': "style_lang != 'less'",
-    'styles.scss': "style_lang != 'scss'",
-    'scss/': "style_lang != 'scss'",
+    'src/styles.less': "style_lang === 'less'",
+    'src/less/**/*': "style_lang === 'less'",
+    'src/styles.scss': "style_lang === 'scss'",
+    'src/scss/**/*': "style_lang === 'scss'",
   },
   helpers: {
     androidVersionCode: (version) => {
