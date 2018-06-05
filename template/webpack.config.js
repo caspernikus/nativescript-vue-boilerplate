@@ -26,18 +26,34 @@ const config = (platform, launchArgs, env) => {
       },
     ],
   });
-  const lessLoader = ExtractTextPlugin.extract({
-    use: [
-      {
-        loader: 'css-loader',
-        options: {
-          url: false,
-          includePaths: [path.resolve(__dirname, 'node_modules')],
+  {{#if_eq style_lang "less"}}
+    const lessLoader = ExtractTextPlugin.extract({
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            url: false,
+            includePaths: [path.resolve(__dirname, 'node_modules')],
+          },
         },
-      },
-      'less-loader',
-    ],
-  });
+        'less-loader',
+      ],
+    });
+  {{/if_eq}}
+  {{#if_eq style_lang "scss"}}
+    const scssLoader = ExtractTextPlugin.extract({
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            url: false,
+            includePaths: [path.resolve(__dirname, 'node_modules')],
+          },
+        },
+        'sass-loader',
+      ],
+    });
+  {{/if_eq}}
 
   return {
 
@@ -62,18 +78,30 @@ const config = (platform, launchArgs, env) => {
           test: /\.css$/,
           use: cssLoader,
         },
+        {{#if_eq style_lang "less"}}
         {
           test: /\.less$/,
           use: lessLoader,
         },
-
+        {{/if_eq}}
+        {{#if_eq style_lang "scss"}}
+        {
+          test: /\.scss$/,
+          use: scssLoader,
+        },
+        {{/if_eq}}
         {
           test: /\.vue$/,
           loader: 'ns-vue-loader',
           options: {
             loaders: {
               css: cssLoader,
+              {{#if_eq style_lang "less"}}
               less: lessLoader,
+              {{/if_eq}}
+              {{#if_eq style_lang "scss"}}
+              scss: scssLoader,
+              {{/if_eq}}
             },
           },
         },

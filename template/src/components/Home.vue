@@ -23,8 +23,6 @@
 <script>
     import { mapActions, mapGetters } from 'vuex';
 
-    import ApiService from '../services/ApiService';
-
     import Login from './Login.vue';
 
     export default {
@@ -55,10 +53,9 @@
             },
         },
         beforeMount() {
-            this.api = new ApiService();
-            this.api.setHeader(this.getApiHeaders);
+            this.$app.api.setHeader(this.getApiHeaders);
 
-            this.api.get('users/2').then((response) => {
+            this.$app.api.get('users/2').then((response) => {
                 const user = response.data;
 
                 console.log(user);

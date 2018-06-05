@@ -63,11 +63,26 @@ module.exports = {
       label: 'License',
       default: 'MIT',
     },
+    style_lang: {
+      type: 'list',
+      label: 'Stylesheet Language',
+      choices: [
+        'less',
+        'scss',
+      ],
+      default: 'less',
+    },
+  },
+  filters: {
+    'styles.less': "style_lang === 'less'",
+    'less/': "style_lang === 'less'",
+    'styles.scss': "style_lang === 'scss'",
+    'scss/': "style_lang === 'scss'",
   },
   helpers: {
     androidVersionCode: (version) => {
       const parts = version.split('.');
       return parts[0] + '0' + parts[1] + '0' + parts[2];
-    },
+    }
   },
 };

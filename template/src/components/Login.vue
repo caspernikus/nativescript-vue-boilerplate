@@ -37,7 +37,6 @@
 <script>
     import { mapActions, mapGetters } from 'vuex';
 
-    import ApiService from '../services/ApiService';
     import Home from './Home.vue';
 
     export default {
@@ -55,9 +54,6 @@
                 getApiToken: 'user/getApiToken',
             }),
         },
-        created() {
-            this.api = new ApiService();
-        },
         methods: {
             ...mapActions({
                 saveToken: 'user/saveToken',
@@ -70,7 +66,7 @@
             login() {
                 this.isAuthenticating = true;
 
-                this.api.post('login', {
+                this.$app.api.post('login', {
                     email: this.user.email,
                     password: this.user.password
                 }).then((response) => {

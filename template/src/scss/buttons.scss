@@ -1,5 +1,5 @@
 .submit-button {
-  background-color: @app-blue;
+  background-color: $app-blue;
   color: white;
   height: 40;
   border-radius: 4;
@@ -7,7 +7,7 @@
 }
 
 .logout-button {
-  background-color: @app-red;
+  background-color: $app-red;
   color: white;
   height: 40;
   border-radius: 4;
