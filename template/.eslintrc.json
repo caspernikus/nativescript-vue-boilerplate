@@ -22,6 +22,9 @@
         "vue/attribute-hyphenation": [2, "never"],
         "vue/html-indent": ["error", 4, {
             "alignAttributesVertically": false
+        }],
+        "no-console": ["error", {
+            "allow": ["error", "warn"]
         }]
     },
     "globals": {

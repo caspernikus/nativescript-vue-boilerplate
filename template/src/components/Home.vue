@@ -7,6 +7,7 @@
 
                 <Label text='Hello,' horizontalAlignment='center' />
                 <Label horizontalAlignment='center'>{{ name }}</Label>
+                <Label horizontalAlignment='center'>Is Online: {{ isOnline }}</Label>
 
                 <Image :src='avatar' stretch='aspectFit' horizontalAlignment='center' class='logo' />
             </StackLayout>
@@ -30,6 +31,7 @@
             ...mapGetters({
                 getUserData: 'user/getUserData',
                 getApiHeaders: 'user/getApiHeaders',
+                getNetworkStatus: 'isOnline',
             }),
 
             name() {
@@ -51,6 +53,10 @@
             user() {
                 return this.getUserData;
             },
+
+            isOnline() {
+                return this.getNetworkStatus;
+            }
         },
         beforeMount() {
             this.$app.api.setHeader(this.getApiHeaders);
@@ -58,19 +64,9 @@
             this.$app.api.get('users/2').then((response) => {
                 const user = response.data;
 
-                console.log(user);
                 this.saveUserData(user);
             }).catch((error) => {
-                alert({
-                    title: 'Error: ' + error.statusCode,
-                    message: error.message,
-                    okButtonText: 'Close'
-                }).then(() => {
-                    this.userLogout();
-                    this.$navigateTo(Login, {
-                        clearHistory: true
-                    });
-                });
+                console.error(error);
             });
         },
         methods: {

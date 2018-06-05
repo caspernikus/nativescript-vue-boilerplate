@@ -1,12 +1,22 @@
 import Vue from 'nativescript-vue';
 
 import ApiService from '../services/ApiService';
+import NetworkService from './services/NetworkService';
 
+const network = new NetworkService();
 Vue.prototype.$app = Object.freeze({
-    api: new ApiService()
+    network,
+    api: new ApiService(network),
 });
 
 import store from './store';
+
+store.dispatch('saveOnlineStatus', network.isOnline);
+network.on('networkStatusChanged', function(event) {
+    const isOnline = event.object.isOnline;
+    
+    store.dispatch('saveOnlineStatus', isOnline);
+});
 
 import Login from './components/Login';
 import Home from './components/Home';

@@ -8,9 +8,27 @@ Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== 'production';
 
 const store = new Vuex.Store({
-  modules: {
-    user: user,
-  },
+    state: {
+        isOnline: true
+    },
+    modules: {
+        user: user,
+    },
+    mutations: {
+        updateOnlineStatus(state, isOnline) {
+            state.isOnline = isOnline;
+        },
+    },
+    actions: {
+        saveOnlineStatus(context, isOnline) {
+            context.commit('updateOnlineStatus', isOnline);
+        },
+    },
+    getters: {
+        isOnline(state) {
+            return state.isOnline;
+        }
+    },
   strict: debug,
 });
 
