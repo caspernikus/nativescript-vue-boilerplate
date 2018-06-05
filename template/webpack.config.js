@@ -27,32 +27,32 @@ const config = (platform, launchArgs, env) => {
     ],
   });
   {{#if_eq style_lang "less"}}
-    const lessLoader = ExtractTextPlugin.extract({
-      use: [
-        {
-          loader: 'css-loader',
-          options: {
-            url: false,
-            includePaths: [path.resolve(__dirname, 'node_modules')],
-          },
+  const lessLoader = ExtractTextPlugin.extract({
+    use: [
+      {
+        loader: 'css-loader',
+        options: {
+          url: false,
+          includePaths: [path.resolve(__dirname, 'node_modules')],
         },
-        'less-loader',
-      ],
-    });
+      },
+      'less-loader',
+    ],
+  });
   {{/if_eq}}
   {{#if_eq style_lang "scss"}}
-    const scssLoader = ExtractTextPlugin.extract({
-      use: [
-        {
-          loader: 'css-loader',
-          options: {
-            url: false,
-            includePaths: [path.resolve(__dirname, 'node_modules')],
-          },
+  const scssLoader = ExtractTextPlugin.extract({
+    use: [
+      {
+        loader: 'css-loader',
+        options: {
+          url: false,
+          includePaths: [path.resolve(__dirname, 'node_modules')],
         },
-        'sass-loader',
-      ],
-    });
+      },
+      'sass-loader',
+    ],
+  });
   {{/if_eq}}
 
   return {
