@@ -1,5 +1,11 @@
 import * as applicationSettings from "tns-core-modules/application-settings";
 
+/**
+ * This is a namespaced Vuex Module for the user states
+ * We also using it as a kind of user model to load and save data to the localStorage of our app
+ *
+ * Seperating Vuex Module and Model is possible, but not necessary on simple tasks
+ */
 export default {
     namespaced: true,
     state: {

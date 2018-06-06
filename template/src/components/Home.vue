@@ -66,7 +66,7 @@
 
                 this.saveUserData(user);
             }).catch((error) => {
-                console.error(error);
+                this.Logger.error(error);
             });
         },
         methods: {

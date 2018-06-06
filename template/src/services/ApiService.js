@@ -4,6 +4,13 @@ import * as http from 'tns-core-modules/http';
  * ApiService Class, used to make Api Calls
  */
 export default class ApiService {
+
+    /**
+     * Constructor
+     * 
+     * @param  {NetworkService}
+     * @return {void}
+     */
     constructor(network) {
         this.baseUrl = BASE_URL;
         this.network = network;
