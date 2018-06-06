@@ -2,12 +2,15 @@ import Vue from 'nativescript-vue';
 
 import ApiService from '../services/ApiService';
 import NetworkService from './services/NetworkService';
+import LoggerService from './services/LoggerService';
 
 const network = new NetworkService();
 Vue.prototype.$app = Object.freeze({
     network,
     api: new ApiService(network),
 });
+
+Vue.prototype.Logger = new LoggerService();
 
 import store from './store';
 
