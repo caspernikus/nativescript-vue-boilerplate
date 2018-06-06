@@ -1,6 +1,6 @@
 import Vue from 'nativescript-vue';
 
-import ApiService from '../services/ApiService';
+import ApiService from './services/ApiService';
 import NetworkService from './services/NetworkService';
 import LoggerService from './services/LoggerService';
 

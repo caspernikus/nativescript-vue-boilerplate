@@ -6,8 +6,8 @@
                 <Image src='~/images/logo.png' stretch='aspectFit' horizontalAlignment='center' class='logo' />
 
                 <Label text='Hello,' horizontalAlignment='center' />
-                <Label horizontalAlignment='center'>{{ name }}</Label>
-                <Label horizontalAlignment='center'>Is Online: {{ isOnline }}</Label>
+                <Label horizontalAlignment='center' :text='name'></Label>
+                <Label horizontalAlignment='center' :text='isOnline'></Label>
 
                 <Image :src='avatar' stretch='aspectFit' horizontalAlignment='center' class='logo' />
             </StackLayout>
@@ -55,7 +55,7 @@
             },
 
             isOnline() {
-                return this.getNetworkStatus;
+                return 'Is Online: ' + this.getNetworkStatus;
             }
         },
         beforeMount() {
