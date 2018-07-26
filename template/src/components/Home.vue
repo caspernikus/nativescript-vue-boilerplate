@@ -10,6 +10,10 @@
                 <Label horizontalAlignment='center' :text='isOnline'></Label>
 
                 <Image :src='avatar' stretch='aspectFit' horizontalAlignment='center' class='logo' />
+
+                <Label fontSize='20' horizontalAlignment='center' :text='localization("example.localized")'/>
+                <Label horizontalAlignment='center' text='Switch language'/>
+                <Switch v-model="engActive" @checkedChange="switchLang" />
             </StackLayout>
 
             <Button
@@ -27,6 +31,11 @@
     import Login from './Login.vue';
 
     export default {
+        data() {
+            return {
+                engActive: false
+            }
+        },
         computed: {
             ...mapGetters({
                 getUserData: 'user/getUserData',
@@ -82,6 +91,19 @@
                 this.$navigateTo(Login, {
                     clearHistory: true
                 });
+            },
+
+            switchLang() {
+                this.$language.current = (this.engActive) ? 'en_US' : 'de_DE';
+            },
+
+            localization(type) {
+                switch (type) {
+                    case 'example.localized':
+                        return this.$gettext('example.localized');
+                    default:
+                        break;
+                }
             }
         },
     };

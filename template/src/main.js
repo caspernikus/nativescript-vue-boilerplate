@@ -1,5 +1,20 @@
 import Vue from 'nativescript-vue';
 
+import { isIOS } from 'tns-core-modules/platform';
+
+import VueGettext from 'vue-gettext';
+import Translations from './locale/locales.json';
+
+Vue.use(VueGettext, {
+    translations: Translations,
+    availableLanguages: {
+        en_US: 'English',
+        de_DE: 'Deutsch'
+    },
+    silent: true,
+    defaultLanguage: 'de_DE'
+});
+
 import ApiService from './services/ApiService';
 import NetworkService from './services/NetworkService';
 import LoggerService from './services/LoggerService';
@@ -15,6 +30,7 @@ const network = new NetworkService();
 Vue.prototype.$app = Object.freeze({
     network,
     api: new ApiService(network),
+    isIOS: (isIOS) ? true : false
 });
 
 /**
