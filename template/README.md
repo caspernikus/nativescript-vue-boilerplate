@@ -58,6 +58,15 @@ e.g: npm run watch:ios:dev
 npm run clean
 ```
 
+## Using localized strings
+To use a localized string please make sure you have at least one `this.$gettext(**KEY**)` inside your components. If so simple run `sh bin/i18n_create` to create .po files for each language folders(de_DE, en_US, ...) inside src/locale. 
+
+To update and use the string inside the application run `sh bin/i18n` after you localized all strings inside the .po files.
+
+`this.$gettext(**KEY**)` is used inside your components to load a localization for a specific key!
+`this.$language.current` is used inside your components to get or set the current language!
+
+
 ## Linting
 ``` bash
 # To use the linter and check coding standards run

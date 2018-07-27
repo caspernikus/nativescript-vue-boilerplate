@@ -5,6 +5,11 @@ import { isIOS } from 'tns-core-modules/platform';
 import VueGettext from 'vue-gettext';
 import Translations from './locale/locales.json';
 
+/**
+ * Use the VueGettext Plugin and load all localized string inside of it.
+ * Please see the ReadMe for How To Usage
+ * @type {Object}
+ */
 Vue.use(VueGettext, {
     translations: Translations,
     availableLanguages: {

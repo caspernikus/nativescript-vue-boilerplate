@@ -1,7 +1,14 @@
 # nativescript-vue-boilerplate
 
 > NativeScript-Vue & Vuex application template for quick prototyping with vue-cli (2.x). 
-> Giving you a pre-developed template with different environmental variable configs, predefined .less styling files, a simple vuex user module, as well as an ready to use ApiService and an example authentication flow to https://reqres.in/ by saving the authentication token to enable auto login.
+Giving you a pre-developed template with:
+- Different environmental variable configs
+- Predefined .less / .sass styling files
+- A simple vuex user module
+- A ready to use ApiService 
+- An example authentication flow to https://reqres.in/ by saving the authentication token to enable auto login.
+- Localized .po files and a bash script to create them
+- A custom Logger class
 
 ## Usage
 
