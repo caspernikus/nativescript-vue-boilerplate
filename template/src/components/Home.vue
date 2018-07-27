@@ -14,6 +14,14 @@
                 <Label fontSize='20' horizontalAlignment='center' :text='localization("example.localized")'/>
                 <Label horizontalAlignment='center' text='Switch language'/>
                 <Switch v-model="engActive" @checkedChange="switchLang" />
+
+                <Label fontSize='20' marginTop='20' horizontalAlignment='center' text='Log Outputs'/>
+                <GridLayout columns="*, *, *, *" rows="40">
+                    <Button col='0' text='Log' @tap='log()' />
+                    <Button col='1' text='Info' @tap='info()' />
+                    <Button col='2' text='Warn' @tap='warn()' />
+                    <Button col='3' text='Error' @tap='error()' />
+                </GridLayout>
             </StackLayout>
 
             <Button
@@ -91,6 +99,22 @@
                 this.$navigateTo(Login, {
                     clearHistory: true
                 });
+            },
+
+            log() {
+                this.Logger.log('Log Output');
+            },
+
+            info() {
+                this.Logger.info('Info Output');
+            },
+
+            warn() {
+                this.Logger.warn('Warn Output');
+            },
+
+            error() {
+                this.Logger.error('Error Output');
             },
 
             switchLang() {

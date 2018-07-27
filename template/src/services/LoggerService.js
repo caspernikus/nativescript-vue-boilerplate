@@ -6,53 +6,38 @@ export default class LoggerService {
     }
 
     /**
-     * Get the current Date in hh:mm:ss format
-     * 
-     * @return {Timestamp String}
+     * Console Log Wrapper
+     * @param  {[string]} text
+     * @return {[void]}
      */
-    getTimestamp() {
-        const date = new Date;
-
-        const seconds = date.getSeconds();
-        const minutes = date.getMinutes();
-        const hour = date.getHours();
-
-        return hour + ':' + minutes + ':' + seconds;
+    log(text) {
+        console.info('\x1b[36m' + text, '\x1b[0m'); // eslint-disable-line no-console
     }
 
     /**
-     * Console Log Wrapper
-     * 
-     * @param  {args}
-     * @return {void}
+     * Console Info Wrapper
+     * @param  {[string]} text
+     * @return {[void]}
      */
-    log(...args) {
-        args.unshift(this.getTimestamp() + ' - ');
-
-        console.log.apply(this, args); // eslint-disable-line no-console
+    info(text) {
+        console.info('\x1b[37m' + text, '\x1b[0m'); // eslint-disable-line no-console
     }
 
     /**
      * Console Warn Wrapper
-     * 
-     * @param  {args}
-     * @return {void}
+     * @param  {[string]} text
+     * @return {[void]}
      */
-    warn(...args) {
-        args.unshift(this.getTimestamp() + ' - ');
-
-        console.warn.apply(this, args);
+    warn(text) {
+        console.info('\x1b[32m' + text, '\x1b[0m'); // eslint-disable-line no-console
     }
 
     /**
      * Console Error Wrapper
-     * 
-     * @param  {args}
-     * @return {void}
+     * @param  {[string]} text
+     * @return {[void]}
      */
-    error(...args) {
-        args.unshift(this.getTimestamp() + ' - ');
-
-        console.error.apply(this, args);
+    error(text) {
+        console.info('\x1b[31m' + text, '\x1b[0m'); // eslint-disable-line no-console
     }
 }
